@@ -22,19 +22,19 @@ html,body {
   height: 100%;
 }
 
-.inter-light {
+.sectra-light {
   font-family: "GT Sectra Display Regular"; 
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
 }
-.inter-md {
+.sectra-md {
   font-family: "GT Sectra Display Regular"; 
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
 }
-.inter-bold {
+.sectra-bold {
   font-family: "GT Sectra Display Regular"; 
   font-optical-sizing: auto;
   font-weight: 900;
