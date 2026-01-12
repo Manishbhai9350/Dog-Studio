@@ -1,14 +1,25 @@
-@import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap");
 
 @font-face {
-    font-family: "GT Sectra Display Regular";
-    src: url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.eot");
-    src: url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.svg#GT Sectra Display Regular")format("svg");
+  font-family: "GT Sectra Display Regular";
+  src: url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.eot");
+  src: url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/ed147ffc0c22f110b20a665b27adfc1b.svg#GT Sectra Display Regular")
+      format("svg");
+}
+@import "tailwindcss";
+
+
+@theme {
+  --color-primary: white;
+  --color-secondary: rgba(160,168,220,.7);
 }
 
 * {
@@ -17,46 +28,53 @@
   box-sizing: border-box;
 }
 
-html,body {
-  width: 100%;
-  height: 100%;
+a {
+  text-decoration: none;
+  transition: all .2s ease;
+  &&:hover {
+    opacity: .6;
+  }
 }
 
 .sectra-light {
-  font-family: "GT Sectra Display Regular"; 
+  font-family: "GT Sectra Display Regular";
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
 }
 .sectra-md {
-  font-family: "GT Sectra Display Regular"; 
+  font-family: "GT Sectra Display Regular";
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
 }
 .sectra-bold {
-  font-family: "GT Sectra Display Regular"; 
+  font-family: "GT Sectra Display Regular";
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
 }
 
- /* Font Font Variants */
-.inter-light {
-  font-family: "Inter", sans-serif;
+/* Font Font Variants */
+.heebo-light {
+  font-family: "Heebo", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
 }
-.inter-md {
-  font-family: "Inter", sans-serif;
+.heebo-md {
+  font-family: "Heebo", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
 }
-.inter-bold {
-  font-family: "Inter", sans-serif;
+.heebo-bold {
+  font-family: "Heebo", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
+}
+
+.t-2 {
+  font-size: 1.3rem;
 }
