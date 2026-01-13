@@ -1,9 +1,11 @@
 import "./App.css";
-import { MdArrowForwardIos } from "react-icons/md";
+import Navbar from "./components/Navbar";
+import ShowreelButton from "./components/showreel-button";
 
 const App = () => {
   return (
     <main className="w-screen overflow-x-hidden text-white bg-[#131419] h-auto md:!pt-50 max-md:!pt-28">
+      <Navbar />
       <picture className="h-full w-full fixed top-0 left-0 z-0">
         <source
           media="(max-width: 450px)"
@@ -39,11 +41,8 @@ const App = () => {
           <h1>Good</h1>
           <h1>Shit</h1>
         </div>
-        <div className="cursor-pointer z-10 md:hidden hover:translate-x-1 transition-transform duration-200 showreel flex justify-start items-center gap-3 !mx-10">
-          <div className="arrow text-rose-800">
-            <MdArrowForwardIos size={15} className="font-semibold" />
-          </div>
-          <p className="text-md heebo-md">Our Showreel</p>
+        <div className="cursor-pointer z-10 md:hidden  !mx-10">
+          <ShowreelButton />
         </div>
         <div className="description-container z-10 !mb-8 w-full h-fit flex justify-start items-start md:justify-end">
           <div className="description-width w-full !mx-10 md:w-[50vw] lg:w-[35vw]  max-sm:flex-1">
