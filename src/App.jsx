@@ -1,11 +1,15 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Project from "./components/Project";
 import ShowreelButton from "./components/showreel-button";
 
 const App = () => {
   return (
     <main className="w-screen overflow-x-hidden text-white bg-[#131419] h-auto md:!pt-50 max-md:!pt-28">
+      {/* Navigation Bar - Animation On Scroll Pending */}
       <Navbar />
+
+      {/* Backgroud  */}
       <picture className="h-full w-full fixed top-0 left-0 z-0">
         <source
           media="(max-width: 450px)"
@@ -34,6 +38,8 @@ const App = () => {
           style={{ opacity: 1 }}
         />
       </picture>
+
+      {/* Hero Section  */}
       <section className="hero relative z-10 flex flex-col justify-center items-start gap-10 w-screen h-auto">
         <div className="heading z-10 !mx-10 md:w-[47vw] md:leading-28 flex-1 flex flex-col justify-center items-start text-7xl sectra-md lg:items-end md:text-9xl">
           <h1>We</h1>
@@ -47,7 +53,7 @@ const App = () => {
         <div className="description-container z-10 !mb-8 w-full h-fit flex justify-start items-start md:justify-end">
           <div className="description-width w-full !mx-10 md:w-[50vw] lg:w-[35vw]  max-sm:flex-1">
             <div className="description w-full md:!w-[350px] flex flex-col justify-start items-start gap-6">
-              <p className="text-2xl sm:text-[1.4rem] heebo-light text-wrap tracking-[0.02rem]">
+              <p className="text-2xl sm:text-[1.4rem] heebo-light  tracking-[0.02rem]">
                 {" "}
                 Dogstudio is a multidisciplinary creative studio at the
                 intersection of art, design and technology.{" "}
@@ -70,6 +76,17 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* Case Studies */}
+      <section className="cases-container !mt-20 w-full h-auto min-h-20 !px-10">
+        <h1 className="text-xs text-secondary sectra-light uppercase tracking-[.26rem]">Featured Projects</h1>
+
+        <div className="cases !mt-14 w-full min-h-5">
+          <Project title='Meow Hi Kehde' description='' headline="stratorgy" />
+        </div>
+
+      </section>
+
     </main>
   );
 };
