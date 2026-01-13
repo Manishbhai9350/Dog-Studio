@@ -28,6 +28,14 @@
   box-sizing: border-box;
 }
 
+html,body {
+  overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  @apply transition-[font-size] duration-500 ease-in;
+}
+
 a {
   text-decoration: none;
   transition: all .2s ease;
