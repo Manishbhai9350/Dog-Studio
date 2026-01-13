@@ -3,21 +3,49 @@ import { MdArrowForwardIos } from "react-icons/md";
 
 const App = () => {
   return (
-    <main className="w-screen overflow-x-hidden text-white bg-black h-auto md:!pt-20 max-md:!pt-28">
-      <section className="hero flex flex-col justify-center items-start gap-10 w-screen h-auto">
-        <div className="heading !mx-10 md:w-[47vw] md:leading-28 flex-1 flex flex-col justify-center items-start text-7xl sectra-light lg:items-end md:text-9xl">
+    <main className="w-screen overflow-x-hidden text-white bg-[#131419] h-auto md:!pt-50 max-md:!pt-28">
+      <picture className="h-full w-full fixed top-0 left-0 z-0">
+        <source
+          media="(max-width: 450px)"
+          srcSet="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-xxs.png"
+          data-srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-xxs.png"
+        />
+
+        <source
+          media="(max-width: 815px)"
+          srcSet="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-m.png"
+          data-srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-m.png"
+        />
+
+        <source
+          media="(max-width: 1030px)"
+          srcSet="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-l.png"
+          data-srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-l.png"
+        />
+
+        <img
+          className="js-lazy loaded"
+          alt=""
+          src="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-xl.png"
+          data-src="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-xl.png"
+          data-was-processed="true"
+          style={{ opacity: 1 }}
+        />
+      </picture>
+      <section className="hero relative z-10 flex flex-col justify-center items-start gap-10 w-screen h-auto">
+        <div className="heading z-10 !mx-10 md:w-[47vw] md:leading-28 flex-1 flex flex-col justify-center items-start text-7xl sectra-md lg:items-end md:text-9xl">
           <h1>We</h1>
           <h1>Make</h1>
           <h1>Good</h1>
           <h1>Shit</h1>
         </div>
-        <div className="cursor-pointer md:hidden hover:translate-x-1 transition-transform duration-200 showreel flex justify-start items-center gap-3 !mx-10">
+        <div className="cursor-pointer z-10 md:hidden hover:translate-x-1 transition-transform duration-200 showreel flex justify-start items-center gap-3 !mx-10">
           <div className="arrow text-rose-800">
             <MdArrowForwardIos size={15} className="font-semibold" />
           </div>
           <p className="text-md heebo-md">Our Showreel</p>
         </div>
-        <div className="description-container !mb-8 w-full h-fit flex justify-start items-start md:justify-end">
+        <div className="description-container z-10 !mb-8 w-full h-fit flex justify-start items-start md:justify-end">
           <div className="description-width w-full !mx-10 md:w-[50vw] lg:w-[35vw]  max-sm:flex-1">
             <div className="description w-full md:!w-[350px] flex flex-col justify-start items-start gap-6">
               <p className="text-2xl sm:text-[1.4rem] heebo-light text-wrap tracking-[0.02rem]">
