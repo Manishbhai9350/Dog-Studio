@@ -63,6 +63,12 @@ a {
   font-weight: 900;
   font-style: normal;
 }
+.sectra-v {
+  font-family: "GT Sectra Display Regular";
+  font-optical-sizing: auto;
+  font-weight: auto;
+  font-style: normal;
+}
 
 /* Font Font Variants */
 .heebo-light {
@@ -81,6 +87,12 @@ a {
   font-family: "Heebo", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;
+  font-style: normal;
+}
+.heebo-v {
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: auto;
   font-style: normal;
 }
 

@@ -4,7 +4,7 @@ import ShowreelButton from "./showreel-button";
 
 const Navbar = () => {
   return (
-    <nav className="w-full z-10 flex justify-between items-center fixed top-2 h-14 md:h-28 px-10 !px-10">
+    <nav className="w-full z-10 flex justify-between items-center fixed top-2 h-14 md:h-28 !px-10">
       <div className="left-nav w-[55vw] md:w-[47vw] h-full flex items-center justify-between">
         <LogoSvg />
         <div className="cases-showreel cursor-pointer">

@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Project from "./components/Project";
 import ShowreelButton from "./components/showreel-button";
+import Cases from "./constants/projects.json";
 
 const App = () => {
   return (
@@ -10,7 +11,7 @@ const App = () => {
       <Navbar />
 
       {/* Backgroud  */}
-      <picture className="h-full w-full fixed top-0 left-0 z-0">
+      <picture className="h-full w-full absolute lg:fixed top-0 left-0 z-0">
         <source
           media="(max-width: 450px)"
           srcSet="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-xxs.png"
@@ -41,17 +42,17 @@ const App = () => {
 
       {/* Hero Section  */}
       <section className="hero relative z-10 flex flex-col justify-center items-start gap-10 w-screen h-auto">
-        <div className="heading z-10 !mx-10 md:w-[47vw] md:leading-28 flex-1 flex flex-col justify-center items-start text-7xl sectra-md lg:items-end md:text-9xl">
+        <div className="heading z-10 !px-10 md:w-[47vw] md:leading-28 flex-1 flex flex-col justify-center items-start text-7xl sectra-md lg:items-end md:text-9xl">
           <h1>We</h1>
           <h1>Make</h1>
           <h1>Good</h1>
           <h1>Shit</h1>
         </div>
-        <div className="cursor-pointer z-10 md:hidden  !mx-10">
+        <div className="cursor-pointer z-10 md:hidden !mx-10">
           <ShowreelButton />
         </div>
         <div className="description-container z-10 !mb-8 w-full h-fit flex justify-start items-start md:justify-end">
-          <div className="description-width w-full !mx-10 md:w-[50vw] lg:w-[35vw]  max-sm:flex-1">
+          <div className="description-width w-full !px-10 !pr-12 md:w-[50vw] lg:w-[35vw]  max-sm:flex-1">
             <div className="description w-full md:!w-[350px] flex flex-col justify-start items-start gap-6">
               <p className="text-2xl sm:text-[1.4rem] heebo-light  tracking-[0.02rem]">
                 {" "}
@@ -78,15 +79,52 @@ const App = () => {
       </section>
 
       {/* Case Studies */}
-      <section className="cases-container !mt-20 w-full h-auto min-h-20 !px-10">
-        <h1 className="text-xs text-secondary sectra-light uppercase tracking-[.26rem]">Featured Projects</h1>
+      <section className="cases-container z-10 relative !mt-20 w-screen h-auto min-h-20 !px-10 !pr-12">
+        <h1 className="text-xs text-secondary sectra-light uppercase tracking-[.26rem]">
+          Featured Projects
+        </h1>
 
         <div className="cases !mt-14 w-full min-h-5">
-          <Project title='Meow Hi Kehde' description='' headline="stratorgy" />
+          {Cases.map((Case, i) => {
+            return <Project key={i} {...Case} />;
+          })}
         </div>
-
       </section>
 
+      {/* Process Section */}
+      <section className="how-we-di-it w-full flex gap-12 flex-col justify-end items-start !my-16 !px-10 !pr-12 lg:!px-28 lg:!pr-28">
+        <p className="text-secondary heebo-md text-[.6rem] uppercase tracking-[.2em]">
+          This is how we do it
+        </p>
+
+        <h1 className="w-full z-10 sectra-light text-[3.3rem] leading-[3rem] max-w-[45vw]">
+          We're crafting emotional experiences aimed at improving results
+        </h1>
+
+        <div className="about relative z-30 w-full !mt-2 flex md:flex-row md:justify-start flex-col justify-end items-start gap-8 z-30 text-secondary heebo-v font-[400] leading-[1.4rem] text-[.9rem]">
+          <div className="empty-placer hidden h-full w-[45vw] lg:inline"></div>
+          <div className="flex-1 flex flex-col justify-between items-start gap-8">
+            <div className="w-full flex max-md:flex-col flex-row justify-start items-start gap-[50px]">
+              <p className="max-lg:flex-1 lg:!w-[220px]">
+                Dogstudio is a design & technology firm working globally from
+                our offices based in Belgium and Chicago. Our strong focus on
+                producing high quality & emotional brandings, digital products
+                and experiences became a signature.
+              </p>
+              <p className="max-lg:flex-1 lg:!w-[220px]">
+                We're passionate about moving people and solving problems for
+                the likes of Microsoft, The Museum of Science And Industry Of
+                Chicago, The Kennedy Center of Washington, Dragone, Quanta
+                Magazine, and many more.
+              </p>
+            </div>
+            <div className="values z-30 group text-white cursor-pointer w-fit">
+              <h3 className="text-sm heebo-md !mb-2">Discover our values</h3>
+              <div className="w-full h-[2px] bg-rose-700 origin-right md:scale-x-110 group-hover:scale-x-100 duration-200 transition-transform"></div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
