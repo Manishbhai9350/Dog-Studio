@@ -1,8 +1,18 @@
+import { FaFacebook } from "react-icons/fa";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Project from "./components/Project";
 import ShowreelButton from "./components/showreel-button";
 import Cases from "./constants/projects.json";
+import {
+  CgDribbble,
+  CgFacebook,
+  CgInstagram,
+  CgMail,
+  CgTwitter,
+} from "react-icons/cg";
+import { FaLetterboxd } from "react-icons/fa6";
+import { BiMessage } from "react-icons/bi";
 
 const App = () => {
   return (
@@ -92,7 +102,7 @@ const App = () => {
       </section>
 
       {/* Process Section */}
-      <section className="how-we-di-it w-full flex gap-12 flex-col justify-end items-start !my-16 !px-10 !pr-12 lg:!px-28 lg:!pr-28">
+      <section className="how-we-di-it relative z-30 bg-gradient w-full flex gap-12 flex-col justify-end items-start !py-16 !px-10 !pr-12 lg:!px-28 lg:!pr-28">
         <p className="text-secondary heebo-md text-[.6rem] uppercase tracking-[.2em]">
           This is how we do it
         </p>
@@ -125,6 +135,76 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* Footer Section */}
+      <footer className="w-full z-30 relative flex flex-col justify-start items-start gap-8 !py-16 !px-10 !pr-12 lg:!px-28 lg:!pr-28">
+        <div className="footer-top w-full flex sm:flex-row flex-col justify-start items-start sm:items-end gap-8">
+          <div className="locations text-xl heedo-light flex sm:flex-row flex-col justify-center sm:items-center items-start gap-6 sm:gap-7">
+            <h2 className="relative">
+              Chicago
+              <span className="absolute bottom-[20%] left-[120%] bg-rose-700 w-[2px] h-[2px]"></span>
+            </h2>
+            <h2 className="relative">
+              Amsterdam
+              <span className="absolute bottom-[20%] left-[120%] bg-rose-700 w-[2px] h-[2px]"></span>
+            </h2>
+            <h2 className="relative">
+              Paris
+              <span className="absolute bottom-[20%] left-[120%] bg-rose-700 w-[2px] h-[2px]"></span>
+            </h2>
+          </div>
+
+          <div className="socials-title w-full h-fit flex sm:flex-col-reverse justify-between sm:items-end items-center">
+            <div className="socials-mobile sm:hidden flex justify-start items-center gap-2 text-secondary">
+              <div className="facebook cursor-pointer border-2 h-8 w-8 flex justify-center items-center rounded-full border-secondary">
+                <CgFacebook />
+              </div>
+              <div className="instagram cursor-pointer border-2 h-8 w-8 flex justify-center items-center rounded-full border-secondary">
+                <CgInstagram />
+              </div>
+              <div className="dribble cursor-pointer border-2 h-8 w-8 flex justify-center items-center rounded-full border-secondary">
+                <CgDribbble />
+              </div>
+              <div className="twitter cursor-pointer border-2 h-8 w-8 flex justify-center items-center rounded-full border-secondary">
+                <CgTwitter />
+              </div>
+            </div>
+            <div className="socials-desktop !mt-4 max-sm:hidden">
+              <div className="handles flex justify-start items-center gap-4 text-secondary text-[.7rem]">
+                <a href="#" className="hover:text-white hover:opacity-100">Fb</a>
+                <span>/</span>
+                <a href="#" className="hover:text-white hover:opacity-100">Ins</a>
+                <span>/</span>
+                <a href="#" className="hover:text-white hover:opacity-100">Dr</a>
+                <span>/</span>
+                <a href="#" className="hover:text-white hover:opacity-100">Twi</a>
+              </div>
+            </div>
+            <div className="title sectra-light text-xl leading-[1.4rem] text-right">
+              <h1>We</h1>
+              <h1>Make</h1>
+              <h1>Good</h1>
+              <h1>Shit</h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="line !pt-5 gap-5 flex flex-col sm:flex-row sm:justify-between justify-start items-center w-full border-t border-three">
+          <div className="hear flex justify-center items-center gap-4 sm:text-sm text-[.6rem]">
+            <p className="heebo-md text-secondary">
+              We'd love to hear from you{" "}
+            </p>
+            <div className="line w-15 h-[1px] bg-three"></div>
+            <a href="mailto:biz@dogstudio.be">biz@dogstudio.be</a>
+          </div>
+          <div className="newsletter flex justify-center items-center gap-4">
+            <CgMail size={20} className="text-three" />
+            <p className="text-xs heebo-md text-secondary">
+              Subscribe to our newsletter
+            </p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 };
