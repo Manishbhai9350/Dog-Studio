@@ -24,6 +24,10 @@
   --color-gradient: linear-gradient(0deg,#131419 25%,rgba(19,20,25,0) 60%);
 }
 
+.grad {
+  @apply bg-gradient;
+}
+
 * {
   padding: 0;
   margin: 0;

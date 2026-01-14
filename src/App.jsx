@@ -98,6 +98,7 @@ const App = () => {
           {Cases.map((Case, i) => {
             return <Project key={i} {...Case} />;
           })}
+          {/* <Project {...Cases[0]} /> */}
         </div>
       </section>
 
@@ -171,13 +172,21 @@ const App = () => {
             </div>
             <div className="socials-desktop !mt-4 max-sm:hidden">
               <div className="handles flex justify-start items-center gap-4 text-secondary text-[.7rem]">
-                <a href="#" className="hover:text-white hover:opacity-100">Fb</a>
+                <a href="#" className="hover:text-white hover:opacity-100">
+                  Fb
+                </a>
                 <span>/</span>
-                <a href="#" className="hover:text-white hover:opacity-100">Ins</a>
+                <a href="#" className="hover:text-white hover:opacity-100">
+                  Ins
+                </a>
                 <span>/</span>
-                <a href="#" className="hover:text-white hover:opacity-100">Dr</a>
+                <a href="#" className="hover:text-white hover:opacity-100">
+                  Dr
+                </a>
                 <span>/</span>
-                <a href="#" className="hover:text-white hover:opacity-100">Twi</a>
+                <a href="#" className="hover:text-white hover:opacity-100">
+                  Twi
+                </a>
               </div>
             </div>
             <div className="title sectra-light text-xl leading-[1.4rem] text-right">
