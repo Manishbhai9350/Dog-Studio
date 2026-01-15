@@ -2,7 +2,7 @@ import { MdArrowBackIos } from "react-icons/md";
 import LogoSvg from "./Logo";
 import ShowreelButton from "./showreel-button";
 
-const Navbar = () => {
+const Navbar = ({HoveredCase}) => {
   return (
     <nav className="w-full z-10 flex justify-between items-center fixed top-2 h-14 md:h-28 !px-10">
       <div className="left-nav w-[55vw] md:w-[47vw] h-full flex items-center justify-between">
@@ -21,6 +21,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {HoveredCase}
       <div className="hamburger group w-6 h-fit flex flex-col justify-between gap-[5px] cursor-pointer">
         <span className="block h-[2px] w-full bg-white"></span>
 

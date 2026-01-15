@@ -11,17 +11,71 @@ import {
   CgMail,
   CgTwitter,
 } from "react-icons/cg";
-import { FaLetterboxd } from "react-icons/fa6";
-import { BiMessage } from "react-icons/bi";
+import Scene from "./components/Three/Scene";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
+  const [HoveredCase, setHoveredCase] = useState(null);
+
+  useGSAP(() => {
+    gsap.to(".hero-background", {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: ".hero-background",
+        start: "bottom top",
+        end: "+=500px",
+        scrub: 2,
+      },
+    });
+  });
+
+  useEffect(() => {
+
+    const tl = gsap.timeline()
+    
+    if(HoveredCase)  {
+      gsap.killTweensOf(['.case-background','.case-background-img'])
+      tl.set('.case-background',{
+        opacity:0
+      })
+      tl.set('.case-background-img',{
+        scale:1
+      })
+      tl.to('.case-background',{
+        delay:.2,
+        opacity:1
+      })
+      tl.to('.case-background-img',{
+        scale:1
+      },'<')
+    } else {
+      gsap.killTweensOf(['.case-background','.case-background-img'])
+      tl.set('.case-background',{
+        opacity:0
+      })
+    }
+  
+    return () => {
+      
+    }
+  }, [HoveredCase])
+  
+
   return (
-    <main className="w-screen overflow-x-hidden text-white bg-[#131419] h-auto md:!pt-50 max-md:!pt-28">
+    <main className="w-screen relative grad overflow-x-hidden text-white bg-four h-auto md:!pt-50 max-md:!pt-28">
       {/* Navigation Bar - Animation On Scroll Pending */}
-      <Navbar />
+      <Navbar HoveredCase={HoveredCase} />
+
+      {/* 3D Dog Scene */}
+      <Scene />
 
       {/* Backgroud  */}
-      <picture className="h-full w-full absolute lg:fixed top-0 left-0 z-0">
+      <picture className="hero-background h-full w-full absolute lg:fixed top-0 left-0 z-0">
         <source
           media="(max-width: 450px)"
           srcSet="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/home/background-xxs.png"
@@ -51,7 +105,7 @@ const App = () => {
       </picture>
 
       {/* Hero Section  */}
-      <section className="hero relative z-10 flex flex-col justify-center items-start gap-10 w-screen h-auto">
+      <section className="hero relative z-30 flex flex-col justify-center items-start gap-10 w-screen h-auto">
         <div className="heading z-10 !px-10 md:w-[47vw] md:leading-28 flex-1 flex flex-col justify-center items-start text-7xl sectra-md lg:items-end md:text-9xl">
           <h1>We</h1>
           <h1>Make</h1>
@@ -88,23 +142,33 @@ const App = () => {
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="cases-container z-10 relative !mt-20 w-screen h-auto min-h-20 !px-10 !pr-12">
+      {/* Case Background  */}
+      <div className="case-background w-screen h-screen z-0 fixed top-0 left-0" >
+        <img className="case-background-img w-full h-full object-cover" src={`/images/background-${HoveredCase}.png`} alt="cases-background" />
+      </div>
+      <section className="cases z-30 relative !mt-20 w-screen h-auto min-h-20 !px-10 !pr-12">
         <h1 className="text-xs text-secondary sectra-light uppercase tracking-[.26rem]">
           Featured Projects
         </h1>
 
-        <div className="cases !mt-14 w-full min-h-5">
+        <div className="cases-wrapper !mt-14 w-full min-h-5">
           {Cases.map((Case, i) => {
-            return <Project key={i} {...Case} />;
+            return (
+              <Project
+                key={i}
+                idx={i}
+                setHoveredCase={setHoveredCase}
+                {...Case}
+              />
+            );
           })}
           {/* <Project {...Cases[0]} /> */}
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="how-we-di-it relative z-30 bg-gradient w-full flex gap-12 flex-col justify-end items-start !py-16 !px-10 !pr-12 lg:!px-28 lg:!pr-28">
-        <p className="text-secondary heebo-md text-[.6rem] uppercase tracking-[.2em]">
+      <section className="process relative  w-full flex gap-12 flex-col justify-end items-start !py-16 !px-10 !pr-12 lg:!px-28 lg:!pr-28">
+        <p className="text-secondary z-10 heebo-md text-[.6rem] uppercase tracking-[.2em]">
           This is how we do it
         </p>
 
@@ -138,7 +202,7 @@ const App = () => {
       </section>
 
       {/* Footer Section */}
-      <footer className="w-full z-30 relative flex flex-col justify-start items-start gap-8 !py-16 !px-10 !pr-12 lg:!px-28 lg:!pr-28">
+      <footer className="footer  w-full z-30 relative flex flex-col justify-start items-start gap-8 !py-16 !pb-28 !px-10 !pr-12 lg:!px-28 lg:!pr-28">
         <div className="footer-top w-full flex sm:flex-row flex-col justify-start items-start sm:items-end gap-8">
           <div className="locations text-xl heedo-light flex sm:flex-row flex-col justify-center sm:items-center items-start gap-6 sm:gap-7">
             <h2 className="relative">
@@ -214,6 +278,11 @@ const App = () => {
           </div>
         </div>
       </footer>
+
+      <div className="footer-background w-full h-[150vh] z-10 absolute bottom-0 left-0">
+        <img className="w-full h-full object-cover" src="/images/about.png" />
+      </div>
+      <div className="grad w-full h-[150vh] absolute bottom-0 left-0 z-20"></div>
     </main>
   );
 };

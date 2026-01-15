@@ -21,11 +21,12 @@
   --color-primary: white;
   --color-secondary: rgba(160,168,220,.7);
   --color-three: rgb(182 193 250 / 10%);
-  --color-gradient: linear-gradient(0deg,#131419 25%,rgba(19,20,25,0) 60%);
+  --color-four: #131419;
+  --color-gradient: linear-gradient(0deg,#131419 15%,rgba(19,20,25,0) 60%);
 }
 
 .grad {
-  @apply bg-gradient;
+  background: var(--color-gradient);
 }
 
 * {
