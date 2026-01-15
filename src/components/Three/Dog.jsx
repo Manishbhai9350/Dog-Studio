@@ -35,7 +35,8 @@ const Dog = () => {
 
   useEffect(() => {
 
-    console.log(actions)
+    console.log(actions['Take 001'])
+    actions['Take 001'].play()
   
     return () => {
       
@@ -44,10 +45,10 @@ const Dog = () => {
   
 
   const dogMaterial = useMemo(() => {
-    const mat = new MeshPhongMaterial({
+    const mat = new MeshStandardMaterial({
       map: dog_diffuse,
       normalMap: dog_normals,
-      specularMap: dog_specular,
+      // specularMap: dog_specular
     });
     return mat;
   }, [dog_diffuse, dog_specular,dog_normals]);
@@ -58,7 +59,6 @@ const Dog = () => {
       if (node.name.includes("DOGSTUDIO") && node.isMesh) {
         node.material = dogMaterial;
       }
-      if(node.isBone) console.log(node)
     });
 
     return () => {};
@@ -68,11 +68,11 @@ const Dog = () => {
     <>
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        {/* <group  scale={6} rotation={[0, (Math.PI / 6), 0]}> */}
-        {/* <Center > */}
+        <group  scale={6} rotation={[0, (Math.PI / 6), 0]}>
+        <Center >
             <primitive ref={DogRef} object={scene} />
-        {/* </Center> */}
-        {/* </group> */}
+        </Center>
+        </group>
     </>
   );
 };
