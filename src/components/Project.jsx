@@ -56,7 +56,7 @@ const Project = ({
 
   return (
     <div className="project w-full max-lg:!my-14">
-      <div className="mobile lg:hidden w-full  flex gap-6 flex-col justify-center items-start">
+      <div className="mobile hidden lg:hidden w-full  flex gap-6 flex-col justify-center items-start">
         <div className="headline">
           <p className="text-xs uppercase sectra-light tracking-[.16rem] text-amber-500">
             {headline}
@@ -71,7 +71,7 @@ const Project = ({
           </p>
         </div>
       </div>
-      <div className="desktop max-lg:hidden w-full cursor-pointer group">
+      <div className="desktop  w-full cursor-pointer group"> {/* max-lg:hidden */}
         <h1
           onMouseEnter={() => {
             setHoveredCase(idx + 1);
