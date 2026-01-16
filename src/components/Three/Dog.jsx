@@ -1,78 +1,101 @@
 import { Center, useAnimations, useGLTF, useTexture } from "@react-three/drei";
 import { useEffect, useMemo, useRef } from "react";
+import Cases from '../../constants/projects.json'
 import {
-  MeshBasicMaterial,
-  MeshPhongMaterial,
-  MeshStandardMaterial,
+  MeshMatcapMaterial,
+  ReinhardToneMapping,
   SRGBColorSpace,
 } from "three";
+import { useThree } from "@react-three/fiber";
+import useDogScrollAnimations from "../../hooks/dog_scroll";
 
-const Dog = () => {
+const Dog = ({ HoveredCase }) => {
+
   const DogRef = useRef(null);
+  const DogConRef = useRef(null);
 
+  useDogScrollAnimations({ dogConRef:DogConRef })
 
-  // Colors 
-  const [branches_diffuse,dog_diffuse] = useTexture(["/textures/branches_diffuse.jpg","/textures/dog_diffuse.jpg"]).map((t) => {
-      t.colorSpace = SRGBColorSpace;
-      return t;
-    });
+  useThree(({ gl, camera  }) => {
+    camera.fov = 20
+    gl.toneMapping = ReinhardToneMapping
+    gl.outputColorSpace = SRGBColorSpace
+  })
 
-  const [branches_normals, dog_specular, dog_normals] =
-    useTexture([
-      "/textures/branches_normals.jpg",
-      "/textures/dog_specular.jpg",
-      "/textures/dog_normals.jpg",
-    ]).map(t => {
-        t.flipY = false
-        return t;
-    })
+  // Matcaps
+  const [mat1] = useTexture([Cases[0].matcap]).map((t) => {
+    t.colorSpace = SRGBColorSpace;
+    return t;
+  });
 
- 
-  const { scene, animations,  } = useGLTF("/models/dog.drc.glb");
+  // Colors
+  const [branches_diffuse, dog_diffuse] = useTexture([
+    "/textures/branches_diffuse.jpg",
+    "/textures/dog_diffuse.jpg",
+  ]).map((t) => {
+    t.colorSpace = SRGBColorSpace;
+    return t;
+  });
 
-  const { actions } = useAnimations(animations,scene)
+  const [branches_normals, dog_specular, dog_normals] = useTexture([
+    "/textures/branches_normals.jpg",
+    "/textures/dog_specular.jpg",
+    "/textures/dog_normals.jpg",
+  ]).map((t) => {
+    t.colorSpace = SRGBColorSpace;
+    t.flipY = false;
+    return t;
+  });
 
+  const { scene, animations } = useGLTF("/models/dog.drc.glb");
+
+  const { actions } = useAnimations(animations, scene);
 
   useEffect(() => {
+    console.log(actions["Take 001"]);
+    actions["Take 001"].play();
 
-    console.log(actions['Take 001'])
-    actions['Take 001'].play()
-  
-    return () => {
-      
-    }
-  }, [actions])
-  
+    return () => {};
+  }, [actions]);
 
-  const dogMaterial = useMemo(() => {
-    const mat = new MeshStandardMaterial({
-      map: dog_diffuse,
+  const { dogMaterial, branchMat } = useMemo(() => {
+    const dogMaterial = new MeshMatcapMaterial({
       normalMap: dog_normals,
-      // specularMap: dog_specular
+      matcap:mat1,
     });
-    return mat;
-  }, [dog_diffuse, dog_specular,dog_normals]);
+    const branchMat = new MeshMatcapMaterial({
+      normalMap: branches_normals,
+      matcap:mat1
+    });
+    return { 
+      dogMaterial,
+      branchMat
+     };
+  }, [dog_normals,branches_normals,mat1]);
 
   useEffect(() => {
     scene.traverse((node) => {
-      // console.log(node.name)
+      console.log(node.name)
       if (node.name.includes("DOGSTUDIO") && node.isMesh) {
         node.material = dogMaterial;
+      }
+      if(node.name.includes('BRANCHS') && node.isMesh) {
+        node.material = branchMat;
       }
     });
 
     return () => {};
-  }, [scene, dogMaterial]);
+  }, [scene, dogMaterial, branchMat]);
 
   return (
     <>
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-        <group  scale={6} rotation={[0, (Math.PI / 6), 0]}>
-        <Center >
-            <primitive ref={DogRef} object={scene} />
-        </Center>
-        </group>
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[0, 5, 5]} color={0xffffff} intensity={10} />
+      <group ref={DogConRef}  position={[-2,0,.5]} rotation={[0, Math.PI / 5, 0]}>
+          <group position={[4,-8,0]}>
+              <primitive scale={12} ref={DogRef} object={scene} />
+          </group>
+      </group>
     </>
   );
 };

@@ -67,12 +67,12 @@ const App = () => {
   
 
   return (
-    <main className="w-screen relative grad overflow-x-hidden text-white bg-four h-auto md:!pt-50 max-md:!pt-28">
+    <main className="main-wrapper w-screen relative grad overflow-x-hidden text-white bg-four h-auto md:!pt-50 max-md:!pt-28">
       {/* Navigation Bar - Animation On Scroll Pending */}
       <Navbar HoveredCase={HoveredCase} />
 
       {/* 3D Dog Scene */}
-      <Scene />
+      <Scene HoveredCase={HoveredCase} />
 
       {/* Backgroud  */}
       <picture className="hero-background h-full w-full absolute lg:fixed top-0 left-0 z-0">
