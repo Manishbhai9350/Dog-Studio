@@ -29,7 +29,7 @@ const Dog = ({ HoveredCase }) => {
 
   // Default Matcap
 
-  const defaultMatcap = useTexture('/matcap/mat-1.png')
+  const defaultMatcap = useTexture('/matcap/mat-3.png')
 
   // Matcaps
   const matcaps = useTexture(Cases.map((c) => c.matcap)).map((t) => {
@@ -62,10 +62,10 @@ const Dog = ({ HoveredCase }) => {
 
   useEffect(() => {
     uniforms.current.currentMat.value = defaultMatcap;
-    uniforms.current.nextMat.value = matcaps[0];
+    uniforms.current.nextMat.value = defaultMatcap;
 
     return () => {};
-  }, [matcaps]);
+  }, [defaultMatcap]);
 
   useEffect(() => {
     actions["Take 001"].play();
@@ -80,35 +80,35 @@ const Dog = ({ HoveredCase }) => {
     });
     const branchMat = new MeshMatcapMaterial({
       normalMap: branches_normals,
-      matcap: matcaps[0],
+      matcap: defaultMatcap,
     });
     return {
       dogMaterial,
       branchMat,
     };
-  }, [dog_normals, branches_normals, matcaps]);
+  }, [dog_normals, branches_normals,defaultMatcap]);
 
   useGSAP(() => {
-
-    console.log(HoveredCase)
-
     if(!DogShader.current) return;
+
+    // console.clear()
+    gsap.killTweensOf([DogShader.current.uniforms.progress])
     DogShader.current.uniforms.progress.value = 0
-    if(!HoveredCase) {
-      DogShader.current.uniforms.currentMat.value = defaultMatcap
-    } else {
-      DogShader.current.uniforms.currentMat.value = matcaps[HoveredCase - 1]
-    }
+    DogShader.current.uniforms.currentMat.value = DogShader.current.uniforms.nextMat.value
+    DogShader.current.uniforms.nextMat.value = !HoveredCase ? defaultMatcap : matcaps[HoveredCase - 1]
+
+
+    // console.log(`Animating from current towards ${which} `)
     
     gsap.to(DogShader.current.uniforms.progress,{
       value:1,
       onComplete(){
-        DogShader.current.uniforms.nextMat.value = DogShader.current.uniforms.currentMat.value
-        DogShader.current.uniforms.progress.value = 1
+        DogShader.current.uniforms.currentMat.value = DogShader.current.uniforms.nextMat.value 
+        DogShader.current.uniforms.progress.value = 0
       }
     })
 
-  },[dogMaterial,matcaps,HoveredCase])
+  },[dogMaterial,matcaps,HoveredCase,defaultMatcap])
 
   useEffect(() => {
     scene.traverse((node) => {
@@ -157,9 +157,13 @@ const Dog = ({ HoveredCase }) => {
       shader.fragmentShader = shader.fragmentShader.replace(
         "vec4 matcapColor = texture2D( matcap, uv );",
         `
-        float prog = smoothstep(0.0,progress, (vViewPosition.x + vViewPosition.y) + 9.0 - 25.0 * (1.0 - progress));
+        float prog = smoothstep(0.0,1.0, (vViewPosition.x + vViewPosition.y) + 9.0 - 25.0 * (1.0 - progress));
 
-        vec4 matcapColor = mix(texture2D(currentMat,uv),texture2D(nextMat,uv),prog);
+        vec4 currentMatTexture = texture2D(currentMat,uv);
+        vec4 nextmatTexture = texture2D(nextMat,uv);
+        vec4 matcapColor = mix(currentMatTexture,nextmatTexture,prog);
+
+        matcapColor = matcapColor;
         
         `
       );
