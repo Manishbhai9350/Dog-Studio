@@ -6,7 +6,7 @@ Dog-Studio is a modern web application focused on showcasing creative work, like
 
 ## Features
 
-- **Modern JavaScript Stack**: Built using Next.js, providing server-side rendering, static site generation, and a robust routing system.
+- **Modern JavaScript Stack**: Built using React.js, static site generation.
 - **Component-Based Architecture**: Uses React components for building reusable UI elements, making development efficient and collaborative.
 - **Responsive Design**: Fully responsive layouts ensure optimal viewing across devices, from desktops to mobile phones.
 - **Creative Animations**: Incorporates advanced animations and transitions for engaging user interactions.
